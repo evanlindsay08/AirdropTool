@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.25; }
+}
+
+body {
+  @apply bg-black min-h-screen text-zinc-100 relative overflow-x-hidden;
+}
+
+/* Animated background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(to bottom right, rgba(16, 185, 129, 0.1), transparent),
+    radial-gradient(circle at center, rgba(23, 23, 23, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
+  z-index: -2;
+}
+
+/* Enhanced Grid overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    linear-gradient(rgba(16, 185, 129, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transform: rotate(45deg);
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+  animation: pulse 4s ease-in-out infinite;
+  z-index: -1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-800 rounded-full hover:bg-zinc-700 transition-colors;
+}
+
+/* Focus outline for accessibility */
+*:focus {
+  outline: 2px solid rgba(16, 185, 129, 0.2);
+  outline-offset: 2px;
+}
+
+/* Wallet Button Overrides */
+.wallet-adapter-button-trigger {
+  background: rgb(24 24 27) !important;
+  box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.05) !important;
+}
+
+.wallet-adapter-button:not([disabled]):hover {
+  background: rgb(39 39 42) !important;
+}
+
+.wallet-adapter-modal-wrapper {
+  background: rgb(24 24 27) !important;
+  border: 1px solid rgb(63 63 70) !important;
+  border-radius: 1rem !important;
+}
+
+.wallet-adapter-modal-button-close {
+  background: rgb(39 39 42) !important;
+}
+
+.wallet-adapter-modal-title {
+  color: rgb(34 197 94) !important;
+}
+
+.wallet-adapter-modal-list-more {
+  color: rgb(161 161 170) !important;
+}
+
+.wallet-adapter-modal-list li {
+  background: rgb(24 24 27) !important;
+}
+
+.wallet-adapter-modal-list li:not([disabled]):hover {
+  background: rgb(39 39 42) !important;
+}
+
+.wallet-adapter-modal-middle button {
+  background: rgb(34 197 94) !important;
+  color: white !important;
+}
+
+.wallet-adapter-modal-middle button:hover {
+  background: rgb(22 163 74) !important;
+}
+
+/* Remove spinner arrows from number inputs */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+} 
